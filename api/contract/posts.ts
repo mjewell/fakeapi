@@ -4,9 +4,9 @@ import { z } from "zod";
 const c = initContract();
 
 const PostSchema = z.object({
-  id: z.string(),
+  id: z.number(),
   title: z.string(),
-  body: z.string(),
+  body: z.string().nullable(),
 });
 
 export const posts = c.router({
@@ -27,7 +27,7 @@ export const posts = c.router({
     path: `/posts/:id`,
     responses: {
       200: PostSchema.nullable(),
-      418: c.type<{ message: string }>(),
+      404: c.type<{ message: string }>(),
     },
     summary: "Get a post by id",
   },

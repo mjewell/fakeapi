@@ -1,10 +1,16 @@
 import { createNextRoute } from "@ts-rest/next";
-import { ImATeapot } from "http-errors";
+import { NotFound } from "http-errors";
+import { db } from "~/lib/prisma";
 import { contract } from "../contract";
 
 export const posts = createNextRoute(contract.posts, {
   createPost: async (args) => {
-    const newPost = { id: "1", title: args.body.title, body: args.body.body };
+    const newPost = await db.post.create({
+      data: {
+        title: args.body.title,
+        body: args.body.body,
+      },
+    });
 
     return {
       status: 201,
@@ -12,14 +18,14 @@ export const posts = createNextRoute(contract.posts, {
     };
   },
   getPost: async (args) => {
-    const post = {
-      id: args.params.id,
-      title: "Hello World",
-      body: "Lorem ipsum",
-    };
+    const post = await db.post.findUnique({
+      where: {
+        id: Number(args.params.id),
+      },
+    });
 
-    if (Math.random() < 0.5) {
-      throw new ImATeapot();
+    if (!post) {
+      throw new NotFound();
     }
 
     return {
