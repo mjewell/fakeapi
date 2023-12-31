@@ -1,6 +1,6 @@
 import { createNextRoute } from "@ts-rest/next";
 import { NotFound } from "http-errors";
-import { createHandler } from "~/lib/api/createHandler";
+import { createHandler } from "~/lib/api/handlers";
 import { db } from "~/lib/prisma";
 import { contract } from "../contract";
 
