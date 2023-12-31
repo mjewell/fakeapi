@@ -1,11 +1,12 @@
 import { createNextRoute } from "@ts-rest/next";
 import { NotFound } from "http-errors";
+import { createHandler } from "~/lib/api/createHandler";
 import { db } from "~/lib/prisma";
 import { contract } from "../contract";
 
 export const posts = createNextRoute(contract.posts, {
-  createPost: async (args) => {
-    const newPost = await db.post.create({
+  createPost: createHandler(async (args) => {
+    const newPost = await db().post.create({
       data: {
         title: args.body.title,
         body: args.body.body,
@@ -16,9 +17,9 @@ export const posts = createNextRoute(contract.posts, {
       status: 201,
       body: newPost,
     };
-  },
-  getPost: async (args) => {
-    const post = await db.post.findUnique({
+  }),
+  getPost: createHandler(async (args) => {
+    const post = await db().post.findUnique({
       where: {
         id: Number(args.params.id),
       },
@@ -32,5 +33,5 @@ export const posts = createNextRoute(contract.posts, {
       status: 200,
       body: post,
     };
-  },
+  }),
 });
