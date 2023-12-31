@@ -7,5 +7,6 @@ import { log } from "~/lib/api/log";
 export default log(
   createNextRouter(contract, router, {
     errorHandler,
+    responseValidation: true,
   })
 );
