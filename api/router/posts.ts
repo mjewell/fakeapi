@@ -1,4 +1,5 @@
 import { createNextRoute } from "@ts-rest/next";
+import { ImATeapot } from "http-errors";
 import { contract } from "../contract";
 
 export const posts = createNextRoute(contract.posts, {
@@ -16,6 +17,10 @@ export const posts = createNextRoute(contract.posts, {
       title: "Hello World",
       body: "Lorem ipsum",
     };
+
+    if (Math.random() < 0.5) {
+      throw new ImATeapot();
+    }
 
     return {
       status: 200,
