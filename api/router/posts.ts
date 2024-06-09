@@ -1,7 +1,8 @@
 import { createNextRoute } from "@ts-rest/next";
 import { NotFound } from "http-errors";
+import { Post } from "~/entities";
 import { createHandler } from "~/lib/api/handlers";
-import { db } from "~/lib/prisma";
+import { em } from "~/lib/api/mikro";
 import * as PostService from "~/services/post";
 import { contract } from "../contract";
 
@@ -15,11 +16,7 @@ export const posts = createNextRoute(contract.posts, {
     };
   }),
   getPost: createHandler(async (args) => {
-    const post = await db().post.findUnique({
-      where: {
-        id: Number(args.params.id),
-      },
-    });
+    const post = await em().findOne(Post, { id: Number(args.params.id) });
 
     if (!post) {
       throw new NotFound();

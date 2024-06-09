@@ -1,25 +1,31 @@
-import { db, resetDb } from "~/lib/prisma";
+import { Post } from "~/entities";
+import { em, mikro } from "~/lib/api/mikro";
 import * as PostService from "../post.fake";
 
-beforeEach(() => resetDb());
-
 describe("create", () => {
-  it("creates a post", async () => {
-    await PostService.create({ title: "Hello", body: "World" });
+  it(
+    "creates a post",
+    mikro(async () => {
+      await PostService.create({ title: "Hello", body: "World" });
+      await em().flush();
 
-    const posts = await db().post.findMany();
-    expect(posts).toHaveLength(1);
+      const posts = await em().find(Post, {});
+      expect(posts).toHaveLength(1);
 
-    const post = posts[0];
-    expect(post.title).toEqual("Hello");
-    expect(post.body).toEqual("World");
-  });
+      const post = posts[0];
+      expect(post.title).toEqual("Hello");
+      expect(post.body).toEqual("World");
+    })
+  );
 
-  it("allows duplicate titles", async () => {
-    await PostService.$.create({ title: "Hello" });
+  it(
+    "allows duplicate titles",
+    mikro(async () => {
+      await PostService.$.create({ title: "Hello" });
+      await em().flush();
 
-    await expect(
-      PostService.create({ title: "Hello", body: "World" })
-    ).resolves.not.toThrow();
-  });
+      await PostService.create({ title: "Hello", body: "World" });
+      await expect(em().flush()).resolves.not.toThrow();
+    })
+  );
 });

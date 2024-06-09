@@ -1,4 +1,5 @@
-import { db } from "~/lib/prisma";
+import { Post } from "~/entities";
+import { em } from "~/lib/api/mikro";
 
 type CreateParams = {
   title: string;
@@ -6,10 +7,8 @@ type CreateParams = {
 };
 
 export async function create({ title, body }: CreateParams) {
-  return db().post.create({
-    data: {
-      title: title,
-      body: body,
-    },
+  return em().create(Post, {
+    title: title,
+    body: body,
   });
 }

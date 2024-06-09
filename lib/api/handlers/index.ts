@@ -1,3 +1,4 @@
+import { mikro } from "../mikro";
 import { transact } from "./transact";
 
 export function createHandler<T extends any[], R>(
@@ -8,5 +9,6 @@ export function createHandler<T extends any[], R>(
   if (options.transaction) {
     c = transact(callback);
   }
+  c = mikro(c);
   return c;
 }

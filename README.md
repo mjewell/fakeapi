@@ -2,7 +2,7 @@ A simple API set up to use my preferred technologies
 
 - NextJs
 - ts-rest
-- Prisma
+- Mikro ORM
 - Tailwind
 - Jest
 

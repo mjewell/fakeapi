@@ -1,5 +1,5 @@
 import { Semaphore } from "@shopify/semaphore";
-import { db, setTxn } from "~/lib/prisma";
+import { em, setTxn } from "~/lib/api/mikro";
 
 // enforce a single transaction at a time
 // in prod this does nothing because each lambda handles 1 request at a time
@@ -13,8 +13,8 @@ export function transact<T extends any[], R>(
   return async (...args: T): Promise<R> => {
     const permit = await lock.acquire();
 
-    return db().$transaction(async (txn) => {
-      setTxn(txn);
+    return em().transactional(async (txnEm) => {
+      setTxn(txnEm);
       try {
         return await callback(...args);
       } finally {
