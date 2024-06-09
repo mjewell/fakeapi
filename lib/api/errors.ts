@@ -6,6 +6,9 @@ export const errorHandler = (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
+  if (process.env.LOG_QUERIES === "true") {
+    console.error(err);
+  }
   if (isHttpError(err) && err.expose) {
     res.status(err.statusCode).json({
       message: err.message,

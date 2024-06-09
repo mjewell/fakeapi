@@ -26,7 +26,7 @@ export const posts = c.router({
     method: "GET",
     path: `/posts/:id`,
     responses: {
-      200: PostSchema.nullable(),
+      200: PostSchema,
       404: c.type<{ message: string }>(),
     },
     summary: "Get a post by id",
