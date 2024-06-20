@@ -13,7 +13,10 @@ function now() {
 }
 
 export function log(
-  callback: (req: NextApiRequest, res: NextApiResponse) => Promise<void>
+  callback: (
+    req: NextApiRequest,
+    res: NextApiResponse
+  ) => Promise<void | NextApiResponse<any>>
 ) {
   return async (req: NextApiRequest, res: NextApiResponse) => {
     const start = now();
@@ -26,7 +29,7 @@ export function log(
       message: "Request start",
     });
 
-    await callback(req, res);
+    const r = await callback(req, res);
 
     const durationMs = now() - start;
     logger.info({
@@ -35,5 +38,7 @@ export function log(
       duration: `${round(durationMs, 2)}`,
       message: "Request end",
     });
+
+    return r;
   };
 }

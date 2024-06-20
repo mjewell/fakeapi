@@ -1,5 +1,5 @@
-import { Post } from "~/entities";
-import { em } from "~/lib/api/mikro";
+import { Post } from "@/entities";
+import { em } from "@/lib/api/mikro";
 
 type CreateParams = {
   title: string;

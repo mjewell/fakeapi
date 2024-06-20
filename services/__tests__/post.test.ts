@@ -1,5 +1,5 @@
-import { Post } from "~/entities";
-import { em, mikro } from "~/lib/api/mikro";
+import { Post } from "@/entities";
+import { em, mikro } from "@/lib/api/mikro";
 import * as PostService from "../post.fake";
 
 describe("create", () => {
