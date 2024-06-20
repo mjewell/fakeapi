@@ -31,4 +31,12 @@ export const posts = c.router({
     },
     summary: "Get a post by id",
   },
+  getPosts: {
+    method: "GET",
+    path: `/posts`,
+    responses: {
+      200: z.array(PostSchema),
+    },
+    summary: "Get all posts",
+  },
 });

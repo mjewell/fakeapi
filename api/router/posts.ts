@@ -11,7 +11,7 @@ export const posts = createNextRoute(contract.posts, {
     const newPost = await PostService.create(args.body);
 
     return {
-      status: 201,
+      status: 201 as const,
       body: newPost,
     };
   }),
@@ -23,8 +23,16 @@ export const posts = createNextRoute(contract.posts, {
     }
 
     return {
-      status: 200,
+      status: 200 as const,
       body: post,
+    };
+  }),
+  getPosts: createHandler(async () => {
+    const posts = await em().findAll(Post);
+
+    return {
+      status: 200 as const,
+      body: posts,
     };
   }),
 });
