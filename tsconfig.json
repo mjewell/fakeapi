@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -19,8 +18,9 @@
       }
     ],
     "paths": {
-      "~/*": ["./*"]
+      "@/*": ["./*"]
     },
+    "types": ["vitest/globals"],
     // for mikro-orm
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true

@@ -1,4 +1,4 @@
-import { getORM } from "~/lib/api/mikro";
+import { getORM } from "@/lib/api/mikro";
 
 afterAll(async () => {
   const orm = await getORM();

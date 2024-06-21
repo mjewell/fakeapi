@@ -1,5 +1,5 @@
+import config from "@/mikro-orm.config";
 import { MikroORM, RequestContext } from "@mikro-orm/core";
-import config from "~/mikro-orm.config";
 
 export const getORM = async () => {
   if (!global.__MikroORM__) {

@@ -1,7 +1,7 @@
 export * from "./post";
 
+import { testify } from "@/lib/testify";
 import { faker } from "@faker-js/faker";
-import { testify } from "~/lib/testify";
 import * as Service from "./post";
 
 export const $ = {

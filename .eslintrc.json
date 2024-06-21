@@ -21,7 +21,7 @@
       {
         "pathGroups": [
           {
-            "pattern": "~/**",
+            "pattern": "@/**",
             "group": "external"
           }
         ],

@@ -1,5 +1,5 @@
+import { em, setTxn } from "@/lib/api/mikro";
 import { Semaphore } from "@shopify/semaphore";
-import { em, setTxn } from "~/lib/api/mikro";
 
 // enforce a single transaction at a time
 // in prod this does nothing because each lambda handles 1 request at a time
