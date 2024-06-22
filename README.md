@@ -4,7 +4,7 @@ A simple API set up to use my preferred technologies
 - ts-rest
 - Mikro ORM
 - Tailwind
-- Jest
+- Vitest
 
 With support for
 

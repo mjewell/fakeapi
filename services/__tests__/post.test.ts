@@ -1,11 +1,12 @@
 import { Post } from "@/entities";
-import { em, mikro } from "@/lib/api/mikro";
+import { em } from "@/lib/api/mikro";
+import { dbTest } from "@/test/dbTest";
 import * as PostService from "../post.fake";
 
 describe("create", () => {
   it(
     "creates a post",
-    mikro(async () => {
+    dbTest(async () => {
       await PostService.create({ title: "Hello", body: "World" });
       await em().flush();
 
@@ -20,7 +21,7 @@ describe("create", () => {
 
   it(
     "allows duplicate titles",
-    mikro(async () => {
+    dbTest(async () => {
       await PostService.$.create({ title: "Hello" });
       await em().flush();
 

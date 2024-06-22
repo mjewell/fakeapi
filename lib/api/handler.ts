@@ -1,5 +1,4 @@
-import { mikro } from "../mikro";
-import { transact } from "./transact";
+import { mikro, transact } from "./mikro";
 
 export function createHandler<T extends any[], R>(
   callback: (...args: T) => Promise<R>,

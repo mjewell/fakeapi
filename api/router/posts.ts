@@ -1,11 +1,12 @@
 import { Post } from "@/entities";
-import { createHandler } from "@/lib/api/handlers";
+import { createHandler } from "@/lib/api/handler";
 import { em } from "@/lib/api/mikro";
 import * as PostService from "@/services/post";
 import { createNextRoute } from "@ts-rest/next";
 import { NotFound } from "http-errors";
 import { contract } from "../contract";
 
+// TODO: createHandler loses type info on the latest ts-rest
 export const posts = createNextRoute(contract.posts, {
   createPost: createHandler(async (args) => {
     const newPost = await PostService.create(args.body);
