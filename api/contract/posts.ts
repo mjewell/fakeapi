@@ -19,6 +19,9 @@ export const posts = c.router({
     body: z.object({
       title: z.string(),
       body: z.string(),
+      author: z.object({
+        id: z.number(),
+      }),
     }),
     summary: "Create a post",
   },

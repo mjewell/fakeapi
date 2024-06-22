@@ -1,5 +1,6 @@
-import { Entity, Property } from "@mikro-orm/core";
+import { Entity, ManyToOne, Property } from "@mikro-orm/core";
 import { BaseEntity } from "./BaseEntity";
+import { User } from "./User";
 
 @Entity()
 export class Post extends BaseEntity {
@@ -8,4 +9,7 @@ export class Post extends BaseEntity {
 
   @Property()
   body: string | null = null;
+
+  @ManyToOne()
+  author!: User;
 }

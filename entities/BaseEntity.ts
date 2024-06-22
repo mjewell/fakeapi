@@ -1,6 +1,8 @@
-import { PrimaryKey, Property } from "@mikro-orm/core";
+import { OptionalProps, PrimaryKey, Property } from "@mikro-orm/core";
 
-export abstract class BaseEntity {
+export abstract class BaseEntity<Optional = never> {
+  [OptionalProps]?: "createdAt" | "updatedAt" | Optional;
+
   @PrimaryKey()
   id!: number;
 
