@@ -1,6 +1,6 @@
 import { Post } from "@/entities";
 import { em } from "@/lib/api/mikro";
-import { dbTest } from "@/test/dbTest";
+import { dbTest } from "@/lib/test/dbTest";
 import * as PostService from "../post.fake";
 
 describe("create", () => {

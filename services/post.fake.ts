@@ -1,6 +1,6 @@
 export * from "./post";
 
-import { testify } from "@/lib/testify";
+import { testify } from "@/lib/test/testify";
 import { faker } from "@faker-js/faker";
 import * as Service from "./post";
 
