@@ -6,9 +6,8 @@ import { createNextRoute } from "@ts-rest/next";
 import { NotFound } from "http-errors";
 import { contract } from "../contract";
 
-// TODO: createHandler loses type info on the latest ts-rest
 export const posts = createNextRoute(contract.posts, {
-  createPost: createHandler(async (args) => {
+  createPost: createHandler<typeof contract.posts.createPost>(async (args) => {
     const newPost = await PostService.create(args.body);
 
     return {
@@ -16,7 +15,7 @@ export const posts = createNextRoute(contract.posts, {
       body: newPost,
     };
   }),
-  getPost: createHandler(async (args) => {
+  getPost: createHandler<typeof contract.posts.getPost>(async (args) => {
     const post = await em().findOne(Post, { id: Number(args.params.id) });
 
     if (!post) {
@@ -28,7 +27,7 @@ export const posts = createNextRoute(contract.posts, {
       body: post,
     };
   }),
-  getPosts: createHandler(async () => {
+  getPosts: createHandler<typeof contract.posts.getPosts>(async () => {
     const posts = await em().findAll(Post);
 
     return {

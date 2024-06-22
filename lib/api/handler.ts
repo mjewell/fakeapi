@@ -1,7 +1,9 @@
+import { AppRoute } from "@ts-rest/core";
+import { createSingleRouteHandler } from "@ts-rest/next";
 import { mikro, transact } from "./mikro";
 
-export function createHandler<T extends any[], R>(
-  callback: (...args: T) => Promise<R>,
+export function createHandler<T extends AppRoute>(
+  callback: Parameters<typeof createSingleRouteHandler<T>>[1],
   options = { transaction: true }
 ) {
   let c = callback;
