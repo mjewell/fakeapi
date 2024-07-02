@@ -46,6 +46,7 @@ export function MikroOrmAdapter(): Adapter {
 
       return wrap(user).toObject();
     },
+    // @ts-expect-error copied from mikro-orm-adapter
     async getUserByAccount(provider_providerAccountId) {
       const em = await getEM();
       const account = await em.findOne(AccountModel, {
@@ -54,12 +55,14 @@ export function MikroOrmAdapter(): Adapter {
       if (!account) return null;
       const user = await em.findOne(UserModel, { id: account.userId });
 
+      // @ts-expect-error copied from mikro-orm-adapter
       return wrap(user).toObject();
     },
     async updateUser(data) {
       const em = await getEM();
       const user = await em.findOne(UserModel, { id: data.id });
       if (!user) throw new Error("User not found");
+      // @ts-expect-error copied from mikro-orm-adapter
       wrap(user).assign(data, { mergeObjects: true });
       await em.persistAndFlush(user);
 
@@ -79,6 +82,7 @@ export function MikroOrmAdapter(): Adapter {
       const user = await em.findOne(UserModel, { id: data.userId });
       if (!user) throw new Error("User not found");
       const account = new AccountModel();
+      // @ts-expect-error copied from mikro-orm-adapter
       wrap(account).assign(data);
       user.accounts.add(account);
       await em.persistAndFlush(user);
@@ -126,6 +130,7 @@ export function MikroOrmAdapter(): Adapter {
       const session = await em.findOne(SessionModel, {
         sessionToken: data.sessionToken,
       });
+      // @ts-expect-error copied from mikro-orm-adapter
       wrap(session).assign(data);
       if (!session) throw new Error("Session not found");
       await em.persistAndFlush(session);
