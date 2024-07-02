@@ -5,7 +5,7 @@ type CreateParams = {
   title: string;
   body: string | null;
   author: {
-    id: number;
+    id: string;
   };
 };
 

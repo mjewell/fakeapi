@@ -2,6 +2,8 @@ import { auth as nextAuth } from "@/auth";
 import { AppRoute } from "@ts-rest/core";
 import { createSingleRouteHandler } from "@ts-rest/next";
 import { Unauthorized } from "http-errors";
+import { Session } from "next-auth";
+import { DeepRequired } from "utility-types";
 
 export function auth<T extends AppRoute>(
   callback: Parameters<typeof createSingleRouteHandler<T>>[1]
@@ -11,6 +13,7 @@ export function auth<T extends AppRoute>(
     if (!session) {
       throw new Unauthorized();
     }
+    args[0].req.auth = session as DeepRequired<Session>;
     return callback(...args);
   };
 }

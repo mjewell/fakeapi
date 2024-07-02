@@ -1,3 +1,4 @@
+import { env } from "@/lib/env";
 import { isHttpError } from "http-errors";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -6,7 +7,7 @@ export const errorHandler = (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  if (process.env.LOG_ERRORS === "true") {
+  if (env.LOG_ERRORS === "true") {
     console.error(err);
   }
   if (isHttpError(err) && err.expose) {

@@ -20,6 +20,26 @@
     preact "10.11.3"
     preact-render-to-string "5.2.3"
 
+"@auth/core@0.34.1":
+  version "0.34.1"
+  resolved "https://registry.yarnpkg.com/@auth/core/-/core-0.34.1.tgz#0d4a2b92f71a743d3eeea0434782efccb37311b8"
+  integrity sha512-tuYU2VIbI8rFbkSwP710LmybB2FXJsPN7j3sjRVfN9SXVQBK2ej6LdewQaofpBGp4Mk+cC2UeiGNH0or4tgaeA==
+  dependencies:
+    "@panva/hkdf" "^1.1.1"
+    "@types/cookie" "0.6.0"
+    cookie "0.6.0"
+    jose "^5.1.3"
+    oauth4webapi "^2.10.4"
+    preact "10.11.3"
+    preact-render-to-string "5.2.3"
+
+"@auth/mikro-orm-adapter@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@auth/mikro-orm-adapter/-/mikro-orm-adapter-2.4.1.tgz#1a179d3ffdc3d5b2e4eff5541be1dee32536b62d"
+  integrity sha512-6vt4CXcHNZ8y6DC/73tlQViSH71FvGXWvAwGP31qob8+T/OEyIcQaz3FuQ3vcu5DBeJZFQ3LPKWXKz1+xoXfsA==
+  dependencies:
+    "@auth/core" "0.34.1"
+
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/@cspotcode/source-map-support/-/source-map-support-0.8.1.tgz#00629c35a688e05a88b1cda684fb9d5e73f000a1"
@@ -2939,7 +2959,7 @@ npm-run-path@^5.1.0:
   dependencies:
     path-key "^4.0.0"
 
-oauth4webapi@^2.9.0:
+oauth4webapi@^2.10.4, oauth4webapi@^2.9.0:
   version "2.11.1"
   resolved "https://registry.yarnpkg.com/oauth4webapi/-/oauth4webapi-2.11.1.tgz#8d79e6b0d54ead203094f185a11031f3f9978465"
   integrity sha512-aNzOnL98bL6izG97zgnZs1PFEyO4WDVRhz2Pd066NPak44w5ESLRCYmJIyey8avSBPOMtBjhF3ZDDm7bIb7UOg==

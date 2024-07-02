@@ -8,7 +8,10 @@ import { contract } from "../contract";
 
 export const posts = createNextRoute(contract.posts, {
   createPost: createHandler<typeof contract.posts.createPost>(async (args) => {
-    const newPost = await PostService.create(args.body);
+    const newPost = await PostService.create({
+      ...args.body,
+      author: args.req.auth.user,
+    });
 
     return {
       status: 201,

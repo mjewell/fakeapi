@@ -8,5 +8,6 @@ export const $ = {
   ...Service,
   create: testify(Service.create, {
     name: () => faker.person.fullName(),
+    email: () => faker.internet.email(),
   }),
 };
